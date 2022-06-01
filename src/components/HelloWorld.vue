@@ -1,58 +1,88 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <div>
+
+    </div>
+    <!-- <div class="container">
+      <h1 class="text-success" v-for="list in lists" :key="list" >{{list.first_name}}</h1>
+    </div> -->
+    <div class="container text-center my-5">
+      <h1 class="my-5 text-warning">Axios Api</h1>
+      <div class="row mx-auto mt-5 fw-bold" v-for="item in list" :key="item">
+        <div class="col">
+          <!-- <div>
+         <img :src="item.IMAGEURL" width="50px" class="rounded-circle" alt="" />
+        </div> -->
+
+          <div class="  ">
+            <div class="px-5 bg-warning bit-logo ">
+              {{ item.FROMSYMBOL }}
+            </div>
+             <div  class="px-5 mt-3 fw-bolder d-flex justify-content-between" >
+              <h5 class="fw-bolder" >OPENDAY</h5>
+              {{ item.OPENDAY }}
+            </div>
+            <div class="px-5 fw-bolder mt-3 d-flex justify-content-between">
+              <h5 class="fw-bolder" >Curent Price of Bit</h5>
+              {{ item.PRICE }}
+            </div>
+            <div>
+              <!-- {{item.VOLUME24HOUR}} -->
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+// import axios from "axios";
+// export default {
+//   name: 'HelloWorld',
+//   props: {
+//     msg: String
+//   },
+//   data()
+//   {
+//     return {
+//       list:[],
+//     }
+//   },
+//   async mounted() {
+//     let result = await axios.get("https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR.json");
+//     console.log("api data", result.data);
+//     this.list = result.data;
+//   },
+// };
+import axios from "axios";
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  name: "IndexPage",
+  data() {
+    return {
+      list: [],
+    };
+  },
+  async mounted() {
+    let result = await axios.get(
+      "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH&tsyms=USD,EUR,PKR,INR"
+    );
+    // let result = await axios.get("https://reqres.in/api/users?page=2");
+    console.log("api data", result.data.DISPLAY.BTC);
+    this.list = result.data.DISPLAY.BTC;
+  },
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+ .bit-logo{
+   display:flex;
+   justify-content: center;
+   /* width: 30px; */
+   font-size: 50px;
+   border-radius:50px ;
+   
+ }
 </style>
