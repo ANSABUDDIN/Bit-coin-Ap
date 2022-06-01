@@ -21,7 +21,7 @@
               {{ item.OPENDAY }}
             </div>
             <div class="px-5 fw-bolder mt-3 d-flex justify-content-between">
-              <h5 class="fw-bolder">Curent Price of Bit</h5>
+              <h5 class="fw-bolder">Curent Price of Bit-Coin</h5>
               {{ item.PRICE }}
             </div>
             <div>
